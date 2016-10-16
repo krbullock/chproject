@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+function find_chproject_root () {
+  local root="$1"
+  while true; do
+    root="$(cd $root && pwd -P)"
+    if [[ -f "$root/.projectrc" ]]; then
+      echo -n "$root"
+      return
+    fi
+    [[ "$root" = "/" ]] && break
+    root="$root/.."
+  done
+  (cd "$1" && pwd -P)
+}
+
+export CHPROJECT="$(find_chproject_root $1)"
+export -n TMPINIT
+TMPINIT=$(mktemp -t chproject) || {
+  echo "$0: failed to create temporary file" >&2
+  exit -1
+}
+trap "rm -f -- '$TMPINIT'" EXIT
+trap "exit 2" HUP INT QUIT TERM
+
+cat >"$TMPINIT" <<EOF
+rm -f "$TMPINIT"
+[[ -f "$HOME/.bashrc" ]] && . "$HOME/.bashrc" || true
+
+echo "entering $(basename $CHPROJECT)"
+cd "$1"
+[[ -f "$CHPROJECT/.projectrc" ]] && . "$CHPROJECT/.projectrc" || true
+EOF
+
+exec "$SHELL" --rcfile "$TMPINIT"
