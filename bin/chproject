@@ -39,4 +39,4 @@ cd "$1"
 [[ -f "$CHPROJECT/.projectrc" ]] && . "$CHPROJECT/.projectrc" || true
 EOF
 
-exec "$SHELL" --rcfile "$TMPINIT"
+exec -a "($PROJNAME) $SHELL" "$SHELL" --rcfile "$TMPINIT"
