@@ -3,7 +3,7 @@
 function find_chproject_root () {
   local root="$1"
   while true; do
-    root="$(cd $root && pwd -P)"
+    root=$(cd "$root" && pwd -P)
     if [[ -f "$root/.projectrc" ]]; then
       echo -n "$root"
       return
@@ -19,7 +19,7 @@ function find_chproject_root () {
   exit 1
 }
 
-export CHPROJECT="$(find_chproject_root $1)"
+export CHPROJECT=$(find_chproject_root "$1")
 PROJNAME=$(basename "$CHPROJECT")
 export -n PROJNAME TMPINIT
 TMPINIT=$(mktemp -t chproject) || {
