@@ -2,15 +2,26 @@
 
 function find_chproject_root () {
   local root="$1"
+  local reporoot
+
   while true; do
     root=$(cd "$root" && pwd -P)
     if [[ -f "$root/.projectrc" ]]; then
       echo -n "$root"
       return
     fi
+    if [[ -d "$root/.hg" || -d "$root/.git" ]]; then
+      reporoot=$root
+    fi
     [[ "$root" = "/" ]] && break
     root="$root/.."
   done
+
+  if [[ -n "$reporoot" ]]; then
+    echo -n $reporoot
+    return
+  fi
+
   (cd "$1" && pwd -P)
 }
 
