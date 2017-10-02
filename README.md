@@ -33,12 +33,12 @@ given directory.
 
 ## Tips & Tricks
 
-Got a .env? Source your .env from .chprojectrc!
+Got a .env? Source your .env from .projectrc!
 
-Got a shared .chprojectrc but want to allow user customization?
+Got a shared .projectrc but want to allow user customization?
 
-    [[ -f "$(dirname $BASH_SOURCE)/.chprojectrc.local" ]] && \
-        . "$(dirname $BASH_SOURCE)/.chprojectrc.local"
+    [[ -f "$(dirname $BASH_SOURCE)/.projectrc.local" ]] && \
+        . "$(dirname $BASH_SOURCE)/.projectrc.local"
 
 Did you wander far from your project's base directory and need to get back?
 
