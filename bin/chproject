@@ -30,8 +30,8 @@ fi
 }
 
 export CHPROJECT=$(find_chproject_root "$1")
-PROJNAME=$(basename "$CHPROJECT")
 export -n PROJNAME TMPINIT
+PROJNAME=$(basename "$CHPROJECT")
 TMPINIT=$(mktemp -t chproject) || {
   echo "$0: failed to create temporary file" >&2
   exit -1
