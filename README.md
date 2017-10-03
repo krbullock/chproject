@@ -1,11 +1,13 @@
 # chproject
 
-A bash(1) command to spawn a new shell in a project directory and set up
-your environment automatically. Unlike [projectrc][] it doesn't wrap
-cd(1); rather it introduces a new command (much like the difference
-between rvm and rbenv).
+A [bash(1)][bash] command to spawn a new shell in a project directory
+and set up your environment automatically. Unlike [projectrc][] it
+doesn't wrap [cd(1)][cd]; rather it introduces a new command (much like
+the difference between rvm and rbenv).
 
+[bash]: https://linux.die.net/man/1/bash
 [projectrc]: https://github.com/dukex/projectrc
+[cd]: https://linux.die.net/man/1/builtin
 
 
 ## Installation
@@ -30,13 +32,17 @@ settings.
 
 Example uses:
 
-* Set per-project environment variables
-* Initialize a language environment like virtualenv
+* Set per-project environment variables, similar to [dotenv][] but
+  without adding an app dependency
+* Initialize a language environment like [virtualenv][]
 * Ensure development dependencies are up-to-date
 * Start an SSH tunnel in the background
 
 If no .projectrc is found, `chproject` simply spawns a new shell in the
 given directory.
+
+[dotenv]: https://github.com/bkeepers/dotenv
+[virtualenv]: https://virtualenv.pypa.io/en/stable/
 
 
 ## Tips & Tricks
@@ -58,6 +64,12 @@ suspending your login shell (and thus logging yourself out or
 unexpectedly closing your tab). To get your first project session back,
 use `fg %<jobnum>` (or in the simple case with only one suspended
 session, just `fg`).
+
+
+## Limitations
+
+At the moment this is very strictly [bash(1)][bash]-only. It would be
+nice if it could be made to work with FreeBSD's /bin/sh, zsh, etc.
 
 
 ## License (MIT)
