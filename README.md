@@ -8,6 +8,14 @@ between rvm and rbenv).
 [projectrc]: https://github.com/dukex/projectrc
 
 
+## Installation
+
+Copy bin/chproject to a directory in your `$PATH`, or add the bin/
+directory in this repository to your `$PATH`.
+
+This may be replaced with a better method when I cut a proper release.
+
+
 ## Usage
 
     $ chproject path/to/myproject
