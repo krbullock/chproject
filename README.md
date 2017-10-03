@@ -38,11 +38,14 @@ Example uses:
 * Ensure development dependencies are up-to-date
 * Start an SSH tunnel in the background
 
-If no .projectrc is found, `chproject` simply spawns a new shell in the
-given directory.
+If no .projectrc is found, `chproject` looks for the root of a
+[Mercurial][] or [Git][] clone, and spawns a new shell there; otherwise
+it simply spawns the shell in the given directory.
 
 [dotenv]: https://github.com/bkeepers/dotenv
 [virtualenv]: https://virtualenv.pypa.io/en/stable/
+[Mercurial]: https://www.mercurial-scm.org/
+[Git]: https://git-scm.com/
 
 
 ## Tips & Tricks
