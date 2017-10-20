@@ -84,7 +84,9 @@ echo -ne "\033]2;$PROJNAME\007"
 
 echo "entering $PROJNAME"
 cd "$TARGETDIR"
-[[ -f "$CHPROJECT/.projectrc" ]] && . "$CHPROJECT/.projectrc" "$@" || true
+if [[ -f "$CHPROJECT/.projectrc" ]]; then
+  . "$CHPROJECT/.projectrc" "$@"
+fi
 EOF
 
 exec -a "($PROJNAME) $SHELL" "$SHELL" --rcfile "$TMPINIT"
