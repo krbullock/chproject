@@ -66,7 +66,9 @@ fi
 }
 
 export CHPROJECT=$(find_chproject_root "$1")
-export -n PROJNAME TMPINIT
+export -n TARGETDIR PROJNAME TMPINIT
+TARGETDIR="$1"
+shift
 PROJNAME=$(basename "$CHPROJECT")
 TMPINIT=$(mktemp -t chproject) || {
   echo "$0: failed to create temporary file" >&2
@@ -81,7 +83,7 @@ echo -ne "\033]2;$PROJNAME\007"
 [[ -f "$HOME/.bashrc" ]] && . "$HOME/.bashrc" || true
 
 echo "entering $PROJNAME"
-cd "$1"
+cd "$TARGETDIR"
 [[ -f "$CHPROJECT/.projectrc" ]] && . "$CHPROJECT/.projectrc" || true
 EOF
 
